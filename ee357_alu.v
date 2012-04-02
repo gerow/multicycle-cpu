@@ -89,17 +89,23 @@ module ee357_alu(
 		  res_fb = opb << opa;
 		// Shift right logical
 		else if (func == FUNC_SRL)
-      res_fb = opb >> opa;
+		begin
+			//$display("GOT HERE!");
+			//$display("opb: ", opb);
+			//$display("opa: ", opa);
+			res_fb = opb >> opa;
+			//$display("res_fb: ", res_fb);
+		end
 		// Shift right arithmetic
 		else if (func == FUNC_SRA)
-		  res_fb <= opb_signed >>> opa;
+		  res_fb = opb_signed >>> opa;
       //res_fb = opa >>> opb;
 		// AND
 		else if (func == FUNC_AND)
 		  res_fb = opa & opb;
 		// OR
 		else if (func == FUNC_OR)
-      res_fb = opa | opb;
+		res_fb = opa | opb;
 		// XOR
 		else if (func == FUNC_XOR)
       res_fb = opa ^ opb;
@@ -110,6 +116,7 @@ module ee357_alu(
 		else
       res_fb = arith_res[31:0];
       //arith_res = {0'b0, opa} + {0'b0, opb_int} + {{32{0'b0}}, cin};
+		//$display("res_fb: ", res_fb);
 	end
 	
 	// Output flag generation process
@@ -133,7 +140,7 @@ module ee357_alu(
 			cout <= arith_res[32];
 		else
 			cout <= 0;
-
+		//$display("res[32]: "
 	end
 	
 	// ============ TO BE COMPLETED BY YOU ==================
@@ -142,7 +149,7 @@ module ee357_alu(
 	//            0 otherwise
 	// Be sure to take overflow into account 
 	//            (Note: SLT assumes signed operands)
-	assign slt_flag = res[31] || res[32];
+	assign slt_flag = !(res[31] || arith_res[32]);
 
 	assign slt_res = {31'b0, slt_flag};
 	assign res = (func == FUNC_SLT) ? slt_res : res_fb;

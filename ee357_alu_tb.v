@@ -197,9 +197,9 @@ module ee357_alu_tb;
 		while (1)
 		begin
 			#100;
-			if(exp_result != res)
+			if(exp_result !== res)
 			begin
-				$display($time, "Exp_result does not match result");
+				//$display($time, "Exp_result does not match result");
 				$display("Expected: ");
 				$display("    Decimal %d", exp_result);
 				$display("    Hex $%h", exp_result);
@@ -209,7 +209,7 @@ module ee357_alu_tb;
 				$display("    Hex $%h", res);
 				$display("    Binary %b", res);
 			end
-			if(exp_flags != flags)
+			if(exp_flags !== flags)
 			begin
 				$display($time, "Exp_flags does not match flags");
 				$display("Expected: ");
