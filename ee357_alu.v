@@ -89,7 +89,7 @@ module ee357_alu(
 		  res_fb = opb << opa;
 		// Shift right logical
 		else if (func == FUNC_SRL)
-      res_fb = opa >> opb;
+      res_fb = opb >> opa;
 		// Shift right arithmetic
 		else if (func == FUNC_SRA)
 		  res_fb <= opb_signed >>> opa;
