@@ -146,6 +146,6 @@ module ee357_alu(
 
 	assign slt_res = {31'b0, slt_flag};
 	assign res = (func == FUNC_SLT) ? slt_res : res_fb;
-	assign zero = (res_fb == 32'b0) ? 1 : 0;
+	assign zero = (res == 32'b0) ? 1 : 0;
 	
 endmodule
