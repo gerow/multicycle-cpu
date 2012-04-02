@@ -73,30 +73,35 @@ module ee357_alu_tb;
 
 		// Wait 100 ns for global reset to finish
 		#100;
+		$display("Running FUNC_ADD");
 		opa = 32'hffffffff;
 		opb = 32'h00000001;
 		func = FUNC_ADD;
 		exp_result = 32'h00000000;
 		exp_flags = 4'b1011;
 		#100;
+		$display("Running FUNC_ADD_2");
 		opa = 32'h7fffffff;
 		opb = 32'h00000001;
 		func = FUNC_ADD;
 		exp_result = 32'h80000000;
 		exp_flags = 4'b0100;
 		#100;
+		$display("Running FUNC_SUB");
 		opa = 32'h80000000;
 		opb = 32'h00000001;
 		func = FUNC_SUB;
 		exp_result = 32'h7fffffff;
 		exp_flags = 4'b0101;
 		#100;
+		$display("Running FUNC_SUB_2");
 		opa = 32'h00000000;
 		opb = 32'h00000001;
 		func = FUNC_SUB;
 		exp_result = 32'hffffffff;
 		exp_flags = 4'b1000;
 		#100;
+		$display("Running FUNC_SUB_3");
 		opa = 32'hffffffff;
 		opb = 32'hfffffffe;
 		func = FUNC_SUB;
@@ -209,6 +214,8 @@ module ee357_alu_tb;
 				$display("    Hex $%h", res);
 				$display("    Binary %b", res);
 			end
+			else
+				$display("    Result GOOD");
 			if(exp_flags !== flags)
 			begin
 				$display($time, "Exp_flags does not match flags");
@@ -221,6 +228,8 @@ module ee357_alu_tb;
 				$display("    Hex $%h", flags);
 				$display("    Binary %b", flags);
 			end
+			else
+				$display("    Flags GOOD");
 		end
 	end
 endmodule
