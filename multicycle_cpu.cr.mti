@@ -1,0 +1,50 @@
+C:/Users/mike/school/ee/357/multicycle_cpu/ee357_mem.v {1 {vlog -work work C:/Users/mike/school/ee/357/multicycle_cpu/ee357_mem.v
+Model Technology ModelSim PE Student Edition vlog 10.1a Compiler 2012.02 Feb 22 2012
+-- Compiling module ee357_mem
+
+Top level modules:
+	ee357_mem
+
+} {} {}} C:/Users/mike/school/ee/357/multicycle_cpu/ee357_alu_tb.v {1 {vlog -work work C:/Users/mike/school/ee/357/multicycle_cpu/ee357_alu_tb.v
+Model Technology ModelSim PE Student Edition vlog 10.1a Compiler 2012.02 Feb 22 2012
+-- Compiling module ee357_alu_tb
+
+Top level modules:
+	ee357_alu_tb
+
+} {} {}} C:/Users/mike/school/ee/357/multicycle_cpu/ee357_mcpu_cu.v {1 {vlog -work work C:/Users/mike/school/ee/357/multicycle_cpu/ee357_mcpu_cu.v
+Model Technology ModelSim PE Student Edition vlog 10.1a Compiler 2012.02 Feb 22 2012
+-- Compiling module ee357_mcpu_cu
+
+Top level modules:
+	ee357_mcpu_cu
+
+} {} {}} C:/Users/mike/school/ee/357/multicycle_cpu/ee357_regfile_2r1w.v {1 {vlog -work work C:/Users/mike/school/ee/357/multicycle_cpu/ee357_regfile_2r1w.v
+Model Technology ModelSim PE Student Edition vlog 10.1a Compiler 2012.02 Feb 22 2012
+-- Compiling module ee357_regfile_2r1w
+
+Top level modules:
+	ee357_regfile_2r1w
+
+} {} {}} C:/Users/mike/school/ee/357/multicycle_cpu/ee357_mcpu.v {1 {vlog -work work C:/Users/mike/school/ee/357/multicycle_cpu/ee357_mcpu.v
+Model Technology ModelSim PE Student Edition vlog 10.1a Compiler 2012.02 Feb 22 2012
+-- Compiling module ee357_mcpu
+
+Top level modules:
+	ee357_mcpu
+
+} {} {}} C:/Users/mike/school/ee/357/multicycle_cpu/ee357_mcpu_tb.v {1 {vlog -work work C:/Users/mike/school/ee/357/multicycle_cpu/ee357_mcpu_tb.v
+Model Technology ModelSim PE Student Edition vlog 10.1a Compiler 2012.02 Feb 22 2012
+-- Compiling module ee357_alu_tb
+
+Top level modules:
+	ee357_alu_tb
+
+} {} {}} C:/Users/mike/school/ee/357/multicycle_cpu/ee357_alu.v {1 {vlog -work work C:/Users/mike/school/ee/357/multicycle_cpu/ee357_alu.v
+Model Technology ModelSim PE Student Edition vlog 10.1a Compiler 2012.02 Feb 22 2012
+-- Compiling module ee357_alu
+
+Top level modules:
+	ee357_alu
+
+} {} {}}

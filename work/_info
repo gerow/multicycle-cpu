@@ -1,0 +1,119 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Modeltech_pe_edu_10.1a\examples
+vee357_alu
+Z1 IM[CFPL^QGd^iJeLG?2HXF0
+Z2 VkoP4O<zE@UBSQFG70oknW3
+Z3 dC:\Users\mike\school\ee\357\multicycle_cpu
+Z4 w1333043382
+Z5 8C:/Users/mike/school/ee/357/multicycle_cpu/ee357_alu.v
+Z6 FC:/Users/mike/school/ee/357/multicycle_cpu/ee357_alu.v
+L0 34
+Z7 OP;L;10.1a;51
+r1
+31
+Z8 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF -O0
+Z9 !s100 [95BIAk<Cfl9N9GL:II[?2
+Z10 !s108 1333342479.774000
+Z11 !s107 C:/Users/mike/school/ee/357/multicycle_cpu/ee357_alu.v|
+Z12 !s90 -reportprogress|300|-work|work|C:/Users/mike/school/ee/357/multicycle_cpu/ee357_alu.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vee357_alu_tb
+Z13 IM]foW6ZR0BaH0DS>2:Nd03
+Z14 V1Mc8X`58>m3h9;[gATAc33
+R3
+Z15 w1333042547
+Z16 8C:/Users/mike/school/ee/357/multicycle_cpu/ee357_mcpu_tb.v
+Z17 FC:/Users/mike/school/ee/357/multicycle_cpu/ee357_mcpu_tb.v
+L0 25
+R7
+r1
+31
+R8
+Z18 !s100 OzHmg7hFX<5]a5QmL?[ld1
+Z19 !s108 1333342481.881000
+Z20 !s107 C:/Users/mike/school/ee/357/multicycle_cpu/ee357_mcpu_tb.v|
+Z21 !s90 -reportprogress|300|-work|work|C:/Users/mike/school/ee/357/multicycle_cpu/ee357_mcpu_tb.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vee357_mcpu
+Z22 IVbjnco9MOASUJWd`gm;U@3
+Z23 VK=_;=Z]DCKIJmUD4`>^U:0
+R3
+Z24 w1271100210
+Z25 8C:/Users/mike/school/ee/357/multicycle_cpu/ee357_mcpu.v
+Z26 FC:/Users/mike/school/ee/357/multicycle_cpu/ee357_mcpu.v
+L0 21
+R7
+r1
+31
+R8
+Z27 !s100 EWk57;M_02khb1E2]=OVz2
+Z28 !s108 1333342480.617000
+Z29 !s107 C:/Users/mike/school/ee/357/multicycle_cpu/ee357_mcpu.v|
+Z30 !s90 -reportprogress|300|-work|work|C:/Users/mike/school/ee/357/multicycle_cpu/ee357_mcpu.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vee357_mcpu_cu
+Z31 I0?R0`2T>j`f<12gm?jX;j2
+Z32 VIKFaI9OUb]d^cN[[zfWGh0
+R3
+Z33 w1271100428
+Z34 8C:/Users/mike/school/ee/357/multicycle_cpu/ee357_mcpu_cu.v
+Z35 FC:/Users/mike/school/ee/357/multicycle_cpu/ee357_mcpu_cu.v
+L0 21
+R7
+r1
+31
+R8
+Z36 !s100 OobCdFjHfBk9YRjdUEJ=>0
+Z37 !s108 1333342481.242000
+Z38 !s107 C:/Users/mike/school/ee/357/multicycle_cpu/ee357_mcpu_cu.v|
+Z39 !s90 -reportprogress|300|-work|work|C:/Users/mike/school/ee/357/multicycle_cpu/ee357_mcpu_cu.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vee357_mem
+Z40 IlZigE01RD5X1cnje2;Qem0
+Z41 VnIG20LOh<USTIo?HQ7`mW0
+R3
+Z42 w1271099466
+Z43 8C:/Users/mike/school/ee/357/multicycle_cpu/ee357_mem.v
+Z44 FC:/Users/mike/school/ee/357/multicycle_cpu/ee357_mem.v
+L0 10
+R7
+r1
+31
+R8
+!i10b 1
+Z45 !s100 W41M=KMd46IM6iVWlJMMU3
+!s85 0
+Z46 !s108 1333342482.244000
+Z47 !s107 C:/Users/mike/school/ee/357/multicycle_cpu/ee357_mem.v|
+Z48 !s90 -reportprogress|300|-work|work|C:/Users/mike/school/ee/357/multicycle_cpu/ee357_mem.v|
+!s101 -O0
+vee357_regfile_2r1w
+!i10b 1
+!s100 SgednlB`F89kCQ1[QNLjm0
+I7i@HnHXGTTZTG@XbInG<d3
+Vh5=SYGi7a5`ggDiZL_E3V0
+R3
+w1270591550
+8C:/Users/mike/school/ee/357/multicycle_cpu/ee357_regfile_2r1w.v
+FC:/Users/mike/school/ee/357/multicycle_cpu/ee357_regfile_2r1w.v
+L0 10
+R7
+r1
+!s85 0
+31
+!s108 1333342482.546000
+!s107 C:/Users/mike/school/ee/357/multicycle_cpu/ee357_regfile_2r1w.v|
+!s90 -reportprogress|300|-work|work|C:/Users/mike/school/ee/357/multicycle_cpu/ee357_regfile_2r1w.v|
+!s101 -O0
+R8
