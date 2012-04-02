@@ -86,7 +86,7 @@ module ee357_alu(
 	begin
 		// Shift left logical
 		if (func == FUNC_SLL)
-		  res_fb = opa << opb;
+		  res_fb = opb << opa;
 		// Shift right logical
 		else if (func == FUNC_SRL)
       res_fb = opa >> opb;

@@ -200,14 +200,26 @@ module ee357_alu_tb;
 			if(exp_result != res)
 			begin
 				$display($time, "Exp_result does not match result");
-				$display("Expected ", exp_result);
-				$display("Got ",  res);
+				$display("Expected: ");
+				$display("    Decimal %d", exp_result);
+				$display("    Hex $%h", exp_result);
+				$display("    Binary %b", exp_result);
+				$display("Got:");
+				$display("    Decimal %d", res);
+				$display("    Hex $%h", res);
+				$display("    Binary %b", res);
 			end
 			if(exp_flags != flags)
 			begin
 				$display($time, "Exp_flags does not match flags");
-				$display("Expected " , exp_flags);
-				$display("Got ", flags);
+				$display("Expected: ");
+				$display("    Decimal %d", exp_flags);
+				$display("    Hex $%h", exp_flags);
+				$display("    Binary %b", exp_flags);
+				$display("Got");
+				$display("    Decimal %d", flags);
+				$display("    Hex $%h", flags);
+				$display("    Binary %b", flags);
 			end
 		end
 	end
