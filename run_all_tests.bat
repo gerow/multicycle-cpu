@@ -1,3 +1,3 @@
-run_alu_tb.bat
 run_mcpu_cu_tb.bat
 run_2x32_mux_tb.bat
+run_pc_write_ctrl_tb.bat
