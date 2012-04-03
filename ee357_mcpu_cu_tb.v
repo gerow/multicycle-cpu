@@ -179,11 +179,11 @@ module ee357_alu_tb;
 			$display("alusela wrong");
 		if (aluselb !== 2'b00)
 			$display("aluselb wrong");
-		if (aluop != 2'b00)
+		if (aluop !==2'b00)
 			$display("aluop wrong");
 		if (tw !== 0)
 			$display("tw wrong");
-		if (pcs != 2'b00)
+		if (pcs !==2'b00)
 			$display("pcs wrong");
 		
 		*/
@@ -215,11 +215,11 @@ module ee357_alu_tb;
 				$display("aluselb wrong");
 				$display("got %b", aluselb);
 			end
-		if (aluop != 2'b00)
+		if (aluop !==2'b00)
 			$display("aluop wrong");
 		if (tw !== 0)
 			$display("tw wrong");
-		if (pcs != 2'b00)
+		if (pcs !==2'b00)
 			$display("pcs wrong");
 			
 		op = OP_LW;
@@ -252,11 +252,11 @@ module ee357_alu_tb;
 			$display("alusela wrong");
 		if (aluselb !== 2'b11)
 			$display("aluselb wrong");
-		if (aluop != 2'b00)
+		if (aluop !==2'b00)
 			$display("aluop wrong");
 		if (tw !== 1)
 			$display("tw wrong");
-		if (pcs != 2'b00)
+		if (pcs !==2'b00)
 			$display("pcs wrong");
 		
 		#100;
@@ -288,11 +288,11 @@ module ee357_alu_tb;
 			$display("alusela wrong");
 		if (aluselb !== 2'b10)
 			$display("aluselb wrong");
-		if (aluop != 2'b00)
+		if (aluop !==2'b00)
 			$display("aluop wrong");
 		if (tw !== 0)
 			$display("tw wrong");
-		if (pcs != 2'b00)
+		if (pcs !==2'b00)
 			$display("pcs wrong");
 			
 		clk = 1;
@@ -323,11 +323,11 @@ module ee357_alu_tb;
 			$display("alusela wrong");
 		if (aluselb !== 2'b10)
 			$display("aluselb wrong");
-		if (aluop != 2'b00)
+		if (aluop !==2'b00)
 			$display("aluop wrong");
 		if (tw !== 0)
 			$display("tw wrong");
-		if (pcs != 2'b00)
+		if (pcs !==2'b00)
 			$display("pcs wrong");
 			
 		clk = 1;
@@ -359,11 +359,11 @@ module ee357_alu_tb;
 			$display("alusela wrong");
 		if (aluselb !== 2'b10)
 			$display("aluselb wrong");
-		if (aluop != 2'b00)
+		if (aluop !==2'b00)
 			$display("aluop wrong");
 		if (tw !== 0)
 			$display("tw wrong");
-		if (pcs != 2'b00)
+		if (pcs !==2'b00)
 			$display("pcs wrong");
 	
 		clk = 1;
@@ -398,11 +398,11 @@ module ee357_alu_tb;
 				$display("aluselb wrong");
 				$display("got %b", aluselb);
 			end
-		if (aluop != 2'b00)
+		if (aluop !==2'b00)
 			$display("aluop wrong");
 		if (tw !== 0)
 			$display("tw wrong");
-		if (pcs != 2'b00)
+		if (pcs !==2'b00)
 			$display("pcs wrong");
 			
 		op = OP_SW;
@@ -443,11 +443,11 @@ module ee357_alu_tb;
 			$display("alusela wrong");
 		if (aluselb !== 2'b10)
 			$display("aluselb wrong");
-		if (aluop != 2'b00)
+		if (aluop !==2'b00)
 			$display("aluop wrong");
 		if (tw !== 0)
 			$display("tw wrong");
-		if (pcs != 2'b00)
+		if (pcs !==2'b00)
 			$display("pcs wrong");
 			
 		clk = 1;
@@ -479,11 +479,11 @@ module ee357_alu_tb;
 			$display("alusela wrong");
 		if (aluselb !== 2'b10)
 			$display("aluselb wrong");
-		if (aluop != 2'b00)
+		if (aluop !==2'b00)
 			$display("aluop wrong");
 		if (tw !== 0)
 			$display("tw wrong");
-		if (pcs != 2'b00)
+		if (pcs !==2'b00)
 			$display("pcs wrong");
 			
 		clk = 1;
@@ -518,11 +518,11 @@ module ee357_alu_tb;
 				$display("aluselb wrong");
 				$display("got %b", aluselb);
 			end
-		if (aluop != 2'b00)
+		if (aluop !==2'b00)
 			$display("aluop wrong");
 		if (tw !== 0)
 			$display("tw wrong");
-		if (pcs != 2'b00)
+		if (pcs !==2'b00)
 			$display("pcs wrong");
 		
 		op = OP_RTYPE;
@@ -563,11 +563,11 @@ module ee357_alu_tb;
 			$display("alusela wrong");
 		if (aluselb !== 2'b00)
 			$display("aluselb wrong");
-		if (aluop != 2'b10)
+		if (aluop !==2'b10)
 			$display("aluop wrong");
 		if (tw !== 0)
 			$display("tw wrong");
-		if (pcs != 2'b00)
+		if (pcs !==2'b00)
 			$display("pcs wrong");
 			
 		clk = 1;
@@ -599,11 +599,11 @@ module ee357_alu_tb;
 			$display("alusela wrong");
 		if (aluselb !== 2'b00)
 			$display("aluselb wrong");
-		if (aluop != 2'b10)
+		if (aluop !==2'b10)
 			$display("aluop wrong");
 		if (tw !== 0)
 			$display("tw wrong");
-		if (pcs != 2'b00)
+		if (pcs !==2'b00)
 			$display("pcs wrong");
 		
 		clk = 1;
@@ -638,11 +638,11 @@ module ee357_alu_tb;
 				$display("aluselb wrong");
 				$display("got %b", aluselb);
 			end
-		if (aluop != 2'b00)
+		if (aluop !==2'b00)
 			$display("aluop wrong");
 		if (tw !== 0)
 			$display("tw wrong");
-		if (pcs != 2'b00)
+		if (pcs !==2'b00)
 			$display("pcs wrong");
 			
 		op = OP_BEQ;
@@ -683,11 +683,11 @@ module ee357_alu_tb;
 			$display("alusela wrong");
 		if (aluselb !== 2'b00)
 			$display("aluselb wrong");
-		if (aluop != 2'b01)
+		if (aluop !==2'b01)
 			$display("aluop wrong");
 		if (tw !== 0)
 			$display("tw wrong");
-		if (pcs != 2'b01)
+		if (pcs !==2'b01)
 			$display("pcs wrong");
 			
 		clk = 1;
@@ -722,11 +722,11 @@ module ee357_alu_tb;
 				$display("aluselb wrong");
 				$display("got %b", aluselb);
 			end
-		if (aluop != 2'b00)
+		if (aluop !==2'b00)
 			$display("aluop wrong");
 		if (tw !== 0)
 			$display("tw wrong");
-		if (pcs != 2'b00)
+		if (pcs !==2'b00)
 			$display("pcs wrong");
 			
 		op = OP_JMP;
@@ -767,11 +767,11 @@ module ee357_alu_tb;
 			$display("alusela wrong");
 		if (aluselb !== 2'b00)
 			$display("aluselb wrong");
-		if (aluop != 2'b00)
+		if (aluop !==2'b00)
 			$display("aluop wrong");
 		if (tw !== 0)
 			$display("tw wrong");
-		if (pcs != 2'b10)
+		if (pcs !== 2'b10)
 			$display("pcs wrong");
 			
 		clk = 1;
@@ -806,11 +806,11 @@ module ee357_alu_tb;
 				$display("aluselb wrong");
 				$display("got %b", aluselb);
 			end
-		if (aluop != 2'b00)
+		if (aluop !==2'b00)
 			$display("aluop wrong");
 		if (tw !== 0)
 			$display("tw wrong");
-		if (pcs != 2'b00)
+		if (pcs !== 2'b00)
 			$display("pcs wrong");
 			
 		op = OP_ADDI;
