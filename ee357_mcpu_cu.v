@@ -100,6 +100,8 @@ module ee357_mcpu_cu(
 					state_d <= STATE8;
 				else if (op == OP_JMP)
 					state_d <= STATE9;
+				else if (op == OP_ADDI)
+					state_d <= STATE10;
 			end
 		else if (state == STATE2)
 			begin
@@ -121,6 +123,10 @@ module ee357_mcpu_cu(
 		else if (state == STATE8)
 			state_d <= STATE0;
 		else if (state == STATE9)
+			state_d <= STATE0;
+		else if (state == STATE10)
+			state_d <= STATE11;
+		else if (state == STATE11)
 			state_d <= STATE0;
 	end
 	
@@ -219,6 +225,17 @@ module ee357_mcpu_cu(
 			begin
 				pcw <= 1;
 				pcs <= 2'b10;
+			end
+		else if (state == STATE10)
+			begin
+				alusela <= 1;
+				aluselb <= 2'b10;
+			end
+		else if (state == STATE11)
+			begin
+				alusela <= 1;
+				aluselb <= 2'b10;
+				regw <= 1;
 			end
 	end	   
 		
