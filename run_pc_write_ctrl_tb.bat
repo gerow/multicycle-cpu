@@ -1,0 +1,3 @@
+iverilog -o ee357_pc_write_ctrl_tb ee357_pc_write_ctrl_tb.v ee357_pc_write_ctrl.v
+vvp -n ee357_pc_write_ctrl_tb
+rm ee357_pc_write_ctrl_tb
