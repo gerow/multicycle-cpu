@@ -379,7 +379,7 @@ module ee357_alu_tb;
 			$display("pcwc wrong");
 		if (iord !== 0)
 			$display("iord wrong");
-		if (mr !== 0)
+		if (mr !== 1)
 			$display("mr wrong");
 		if(mw !== 0)
 			$display("mw wrong");
@@ -394,7 +394,10 @@ module ee357_alu_tb;
 		if (alusela !== 0)
 			$display("alusela wrong");
 		if (aluselb !== 2'b01)
-			$display("aluselb wrong");
+			begin
+				$display("aluselb wrong");
+				$display("got %b", aluselb);
+			end
 		if (aluop != 2'b00)
 			$display("aluop wrong");
 		if (tw !== 0)
@@ -496,7 +499,7 @@ module ee357_alu_tb;
 			$display("pcwc wrong");
 		if (iord !== 0)
 			$display("iord wrong");
-		if (mr !== 0)
+		if (mr !== 1)
 			$display("mr wrong");
 		if(mw !== 0)
 			$display("mw wrong");
@@ -511,7 +514,10 @@ module ee357_alu_tb;
 		if (alusela !== 0)
 			$display("alusela wrong");
 		if (aluselb !== 2'b01)
-			$display("aluselb wrong");
+			begin
+				$display("aluselb wrong");
+				$display("got %b", aluselb);
+			end
 		if (aluop != 2'b00)
 			$display("aluop wrong");
 		if (tw !== 0)
@@ -613,7 +619,7 @@ module ee357_alu_tb;
 			$display("pcwc wrong");
 		if (iord !== 0)
 			$display("iord wrong");
-		if (mr !== 0)
+		if (mr !== 1)
 			$display("mr wrong");
 		if(mw !== 0)
 			$display("mw wrong");
@@ -628,7 +634,10 @@ module ee357_alu_tb;
 		if (alusela !== 0)
 			$display("alusela wrong");
 		if (aluselb !== 2'b01)
-			$display("aluselb wrong");
+			begin
+				$display("aluselb wrong");
+				$display("got %b", aluselb);
+			end
 		if (aluop != 2'b00)
 			$display("aluop wrong");
 		if (tw !== 0)
@@ -694,7 +703,7 @@ module ee357_alu_tb;
 			$display("pcwc wrong");
 		if (iord !== 0)
 			$display("iord wrong");
-		if (mr !== 0)
+		if (mr !== 1)
 			$display("mr wrong");
 		if(mw !== 0)
 			$display("mw wrong");
@@ -709,7 +718,10 @@ module ee357_alu_tb;
 		if (alusela !== 0)
 			$display("alusela wrong");
 		if (aluselb !== 2'b01)
-			$display("aluselb wrong");
+			begin
+				$display("aluselb wrong");
+				$display("got %b", aluselb);
+			end
 		if (aluop != 2'b00)
 			$display("aluop wrong");
 		if (tw !== 0)
@@ -775,7 +787,7 @@ module ee357_alu_tb;
 			$display("pcwc wrong");
 		if (iord !== 0)
 			$display("iord wrong");
-		if (mr !== 0)
+		if (mr !== 1)
 			$display("mr wrong");
 		if(mw !== 0)
 			$display("mw wrong");
@@ -790,7 +802,10 @@ module ee357_alu_tb;
 		if (alusela !== 0)
 			$display("alusela wrong");
 		if (aluselb !== 2'b01)
-			$display("aluselb wrong");
+			begin
+				$display("aluselb wrong");
+				$display("got %b", aluselb);
+			end
 		if (aluop != 2'b00)
 			$display("aluop wrong");
 		if (tw !== 0)

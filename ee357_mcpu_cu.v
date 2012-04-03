@@ -89,8 +89,38 @@ module ee357_mcpu_cu(
 		state_d <= STATE0;
 		if(state == STATE0)
 			state_d <= STATE1;
-		// TO BE COMPLETED BY YOU:
-		//   ADD OTHER IF OR ELSE IF STATEMENTS HERE 
+		else if (state == STATE1)
+			begin
+				if (op == OP_LW || op == OP_SW)
+					state_d <= STATE2;
+				else if (op == OP_RTYPE)
+					state_d <= STATE6;
+				else if (op == OP_BEQ)
+					state_d <= STATE8;
+				else if (op == OP_JMP)
+					state_d <= STATE9;
+			end
+		else if (state == STATE2)
+			begin
+				if (op == OP_LW)
+					state_d <= STATE3;
+				else
+					state_d <= STATE5;
+			end
+		else if (state == STATE3)
+			state_d <= STATE4;
+		else if (state == STATE4)
+			state_d <= STATE0;
+		else if (state == STATE5)
+			state_d <= STATE0;
+		else if (state == STATE6)
+			state_d <= STATE7;
+		else if (state == STATE7)
+			state_d <= STATE0;
+		else if (state == STATE8)
+			state_d <= STATE0;
+		else if (state == STATE9)
+			state_d <= STATE0;
 	end
 	
 	// OFL
@@ -120,8 +150,75 @@ module ee357_mcpu_cu(
 				aluselb <= 2'b01;
 				pcw <= 1;
 			end
-		// TO BE COMPLETED BY YOU:
-		//   ADD OTHER IF OR ELSE IF STATEMENTS HERE 
+		else if (state == STATE1)
+			begin
+				//alusela <= 0;
+				aluselb <= 2'b11;
+				//aluop <= 2'b00;
+				tw <= 1;
+			end
+		else if (state == STATE2)
+			begin
+				alusela <= 1;
+				aluselb <= 2'b10;
+				//aluop <= 2'b00;
+				iord <= 1;
+			end
+		else if (state == STATE3)
+			begin
+				mr <= 1;
+				alusela <= 1;
+				aluselb <= 2'b10;
+				//aluop <= 2'b00;
+				iord <= 1;
+			end
+		else if (state == STATE4)
+			begin
+				mr <= 1;
+				alusela <= 1;
+				aluselb <= 2'b10;
+				//aluop <= 2'b00;
+				iord <= 1;
+				mtor <= 1;
+				//rdst <= 0;
+				regw <= 1;
+			end
+		else if (state == STATE5)
+			begin
+				mw <= 1;
+				alusela <= 1;
+				aluselb <= 2'b10;
+				//aluop <= 2'b00;
+				iord <= 1;
+			end
+		else if (state == STATE6)
+			begin
+				alusela <= 1;
+				//aluselb <= 2'b00;
+				aluop <= 2'b10;
+			end
+		else if (state == STATE7)
+			begin
+				alusela <= 1;
+				//aluselb <= 2'b00;
+				aluop <= 2'b10;
+				rdst <= 1;
+				//mtor <= 0;
+				regw <= 1;
+			end
+		else if (state == STATE8)
+			begin
+				alusela <= 1;
+				//aluselb <= 2'b00;
+				aluop <= 2'b01;
+				pcwc <= 1;
+				pcs <= 2'b01;
+			end
+		else if (state == STATE9)
+			begin
+				pcw <= 1;
+				pcs <= 2'b10;
+			end
 	end	   
 		
 endmodule
