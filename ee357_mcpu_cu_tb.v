@@ -29,6 +29,7 @@ module ee357_alu_tb;
 	reg [5:0] func;
 	reg rst;
 	reg clk;
+	reg fail;
 
 	// Outputs
 
@@ -115,6 +116,7 @@ module ee357_alu_tb;
 		func = 0;
 		rst = 1;
 		clk = 1;
+		fail = 0;
 
 		// Wait 100 ns for global reset to finish
 		#100;
@@ -190,37 +192,51 @@ module ee357_alu_tb;
 		
 		//Check if initial state is correct
 		$display("Checking state 0 (Instruc. Fetch)");
-		if (pcw !== 1)
+		if (pcw !== 1) begin
 			$display("pcw wrong");
-		if (pcwc !==  0)
+			fail = 1; end
+		if (pcwc !==  0) begin
 			$display("pcwc wrong");
-		if (iord !== 0)
+			fail = 1; end
+		if (iord !== 0) begin
 			$display("iord wrong");
-		if (mr !== 1)
+			fail = 1; end
+		if (mr !== 1) begin
 			$display("mr wrong");
-		if(mw !== 0)
+			fail = 1; end
+		if(mw !== 0) begin
 			$display("mw wrong");
-		if (irw !== 1)
+			fail = 1; end
+		if (irw !== 1) begin
 			$display("irw wrong");
-		if (regw !== 0)
+			fail = 1; end
+		if (regw !== 0) begin
 			$display("regw wrong");
-		if (mtor !== 0)
+			fail = 1; end
+		if (mtor !== 0) begin
 			$display("mtor wrong");
-		if (rdst !== 0)
+			fail = 1; end
+		if (rdst !== 0) begin
 			$display("rdst wrong");
-		if (alusela !== 0)
+			fail = 1; end
+		if (alusela !== 0) begin
 			$display("alusela wrong");
+			fail = 1; end
 		if (aluselb !== 2'b01)
 			begin
 				$display("aluselb wrong");
 				$display("got %b", aluselb);
+				fail = 1;
 			end
-		if (aluop !==2'b00)
+		if (aluop !==2'b00) begin
 			$display("aluop wrong");
-		if (tw !== 0)
+			fail = 1; end
+		if (tw !== 0) begin
 			$display("tw wrong");
-		if (pcs !==2'b00)
+			fail = 1; end
+		if (pcs !==2'b00) begin
 			$display("pcs wrong");
+			fail = 1; end
 			
 		op = OP_LW;
 		#100;
@@ -230,34 +246,41 @@ module ee357_alu_tb;
 		#100;
 		
 		$display("Checking state 1 (Instruc. Decode + Reg Fetch");
-		if (pcw !== 0)
+		if (pcw !== 0) begin
 			$display("pcw wrong");
-		if (pcwc !==  0)
+			fail = 1; end
+		if (pcwc !==  0) begin
 			$display("pcwc wrong");
-		if (iord !== 0)
+			fail = 1; end
+		if (iord !== 0) begin
 			$display("iord wrong");
-		if (mr !== 0)
+			fail = 1; end
+		if (mr !== 0) begin
 			$display("mr wrong");
-		if(mw !== 0)
+			fail = 1; end
+		if(mw !== 0) begin
 			$display("mw wrong");
-		if (irw !== 0)
+			fail = 1; end
+		if (irw !== 0) begin
 			$display("irw wrong");
-		if (regw !== 0)
+			fail = 1; end
+		if (regw !== 0) begin
 			$display("regw wrong");
-		if (mtor !== 0)
-			$display("mtor wrong");
-		if (rdst !== 0)
-			$display("rdst wrong");
-		if (alusela !== 0)
-			$display("alusela wrong");
-		if (aluselb !== 2'b11)
-			$display("aluselb wrong");
-		if (aluop !==2'b00)
-			$display("aluop wrong");
-		if (tw !== 1)
-			$display("tw wrong");
-		if (pcs !==2'b00)
-			$display("pcs wrong");
+			fail = 1; end
+		if (mtor !== 0) begin
+			$display("mtor wrong"); fail = 1; end
+		if (rdst !== 0) begin
+			$display("rdst wrong"); fail = 1; end
+		if (alusela !== 0) begin
+			$display("alusela wrong"); fail = 1; end
+		if (aluselb !== 2'b11) begin
+			$display("aluselb wrong"); fail = 1; end
+		if (aluop !==2'b00) begin
+			$display("aluop wrong"); fail = 1; end
+		if (tw !== 1) begin
+			$display("tw wrong"); fail = 1; end
+		if (pcs !==2'b00) begin
+			$display("pcs wrong"); fail = 1; end
 		
 		#100;
 		clk = 1;
@@ -266,34 +289,34 @@ module ee357_alu_tb;
 		#100;
 		
 		$display("Checking state 2 (mem addr computation)");
-		if (pcw !== 0)
-			$display("pcw wrong");
-		if (pcwc !==  0)
-			$display("pcwc wrong");
-		if (iord !== 1)
-			$display("iord wrong");
-		if (mr !== 0)
-			$display("mr wrong");
-		if(mw !== 0)
-			$display("mw wrong");
-		if (irw !== 0)
-			$display("irw wrong");
-		if (regw !== 0)
-			$display("regw wrong");
-		if (mtor !== 0)
-			$display("mtor wrong");
-		if (rdst !== 0)
-			$display("rdst wrong");
-		if (alusela !== 1)
-			$display("alusela wrong");
-		if (aluselb !== 2'b10)
-			$display("aluselb wrong");
-		if (aluop !==2'b00)
-			$display("aluop wrong");
-		if (tw !== 0)
-			$display("tw wrong");
-		if (pcs !==2'b00)
-			$display("pcs wrong");
+		if (pcw !== 0) begin
+			$display("pcw wrong"); fail = 1; end
+		if (pcwc !==  0) begin
+			$display("pcwc wrong"); fail = 1; end
+		if (iord !== 1) begin
+			$display("iord wrong"); fail = 1; end
+		if (mr !== 0) begin
+			$display("mr wrong"); fail = 1; end
+		if(mw !== 0) begin
+			$display("mw wrong"); fail = 1; end
+		if (irw !== 0) begin
+			$display("irw wrong"); fail = 1; end
+		if (regw !== 0) begin
+			$display("regw wrong"); fail = 1; end
+		if (mtor !== 0) begin
+			$display("mtor wrong"); fail = 1; end
+		if (rdst !== 0) begin
+			$display("rdst wrong"); fail = 1; end
+		if (alusela !== 1) begin
+			$display("alusela wrong"); fail = 1; end
+		if (aluselb !== 2'b10) begin
+			$display("aluselb wrong"); fail = 1; end
+		if (aluop !==2'b00) begin
+			$display("aluop wrong"); fail = 1; end
+		if (tw !== 0) begin
+			$display("tw wrong"); fail = 1; end
+		if (pcs !==2'b00) begin
+			$display("pcs wrong"); fail = 1; end
 			
 		clk = 1;
 		#100;
@@ -301,34 +324,34 @@ module ee357_alu_tb;
 		#100;
 		
 		$display("Checking state 3 (memory access)");
-		if (pcw !== 0)
-			$display("pcw wrong");
-		if (pcwc !==  0)
-			$display("pcwc wrong");
-		if (iord !== 1)
-			$display("iord wrong");
-		if (mr !== 1)
-			$display("mr wrong");
-		if(mw !== 0)
-			$display("mw wrong");
-		if (irw !== 0)
-			$display("irw wrong");
-		if (regw !== 0)
-			$display("regw wrong");
-		if (mtor !== 0)
-			$display("mtor wrong");
-		if (rdst !== 0)
-			$display("rdst wrong");
-		if (alusela !== 1)
-			$display("alusela wrong");
-		if (aluselb !== 2'b10)
-			$display("aluselb wrong");
-		if (aluop !==2'b00)
-			$display("aluop wrong");
-		if (tw !== 0)
-			$display("tw wrong");
-		if (pcs !==2'b00)
-			$display("pcs wrong");
+		if (pcw !== 0) begin
+			$display("pcw wrong"); fail = 1; end
+		if (pcwc !==  0) begin
+			$display("pcwc wrong"); fail = 1; end
+		if (iord !== 1) begin
+			$display("iord wrong"); fail = 1; end
+		if (mr !== 1) begin
+			$display("mr wrong"); fail = 1; end
+		if(mw !== 0) begin
+			$display("mw wrong"); fail = 1; end
+		if (irw !== 0) begin
+			$display("irw wrong"); fail = 1; end
+		if (regw !== 0) begin
+			$display("regw wrong"); fail = 1; end
+		if (mtor !== 0) begin
+			$display("mtor wrong"); fail = 1; end
+		if (rdst !== 0) begin
+			$display("rdst wrong"); fail = 1; end
+		if (alusela !== 1) begin
+			$display("alusela wrong"); fail = 1; end
+		if (aluselb !== 2'b10) begin
+			$display("aluselb wrong"); fail = 1; end
+		if (aluop !==2'b00) begin
+			$display("aluop wrong"); fail = 1; end
+		if (tw !== 0) begin
+			$display("tw wrong"); fail = 1; end
+		if (pcs !==2'b00) begin
+			$display("pcs wrong"); fail = 1; end
 			
 		clk = 1;
 		#100;
@@ -337,34 +360,34 @@ module ee357_alu_tb;
 		
 		$display("Checking state 4 (write back)");
 		
-		if (pcw !== 0)
-			$display("pcw wrong");
-		if (pcwc !==  0)
-			$display("pcwc wrong");
-		if (iord !== 1)
-			$display("iord wrong");
-		if (mr !== 1)
-			$display("mr wrong");
-		if(mw !== 0)
-			$display("mw wrong");
-		if (irw !== 0)
-			$display("irw wrong");
-		if (regw !== 1)
-			$display("regw wrong");
-		if (mtor !== 1)
-			$display("mtor wrong");
-		if (rdst !== 0)
-			$display("rdst wrong");
-		if (alusela !== 1)
-			$display("alusela wrong");
-		if (aluselb !== 2'b10)
-			$display("aluselb wrong");
-		if (aluop !==2'b00)
-			$display("aluop wrong");
-		if (tw !== 0)
-			$display("tw wrong");
-		if (pcs !==2'b00)
-			$display("pcs wrong");
+		if (pcw !== 0) begin
+			$display("pcw wrong"); fail = 1; end
+		if (pcwc !==  0) begin
+			$display("pcwc wrong"); fail = 1; end
+		if (iord !== 1) begin
+			$display("iord wrong"); fail = 1; end
+		if (mr !== 1) begin
+			$display("mr wrong"); fail = 1; end
+		if(mw !== 0) begin
+			$display("mw wrong"); fail = 1; end
+		if (irw !== 0) begin
+			$display("irw wrong"); fail = 1; end
+		if (regw !== 1) begin
+			$display("regw wrong"); fail = 1; end
+		if (mtor !== 1) begin
+			$display("mtor wrong"); fail = 1; end
+		if (rdst !== 0) begin
+			$display("rdst wrong"); fail = 1; end
+		if (alusela !== 1) begin
+			$display("alusela wrong"); fail = 1; end
+		if (aluselb !== 2'b10) begin
+			$display("aluselb wrong"); fail = 1; end
+		if (aluop !==2'b00) begin
+			$display("aluop wrong"); fail = 1; end
+		if (tw !== 0) begin
+			$display("tw wrong"); fail = 1; end
+		if (pcs !==2'b00) begin
+			$display("pcs wrong"); fail = 1; end
 	
 		clk = 1;
 		#100;
@@ -373,37 +396,37 @@ module ee357_alu_tb;
 		
 		$display("Checking to make sure we're back in state 0");
 		
-		if (pcw !== 1)
-			$display("pcw wrong");
-		if (pcwc !==  0)
-			$display("pcwc wrong");
-		if (iord !== 0)
-			$display("iord wrong");
-		if (mr !== 1)
-			$display("mr wrong");
-		if(mw !== 0)
-			$display("mw wrong");
-		if (irw !== 1)
-			$display("irw wrong");
-		if (regw !== 0)
-			$display("regw wrong");
-		if (mtor !== 0)
-			$display("mtor wrong");
-		if (rdst !== 0)
-			$display("rdst wrong");
-		if (alusela !== 0)
-			$display("alusela wrong");
+		if (pcw !== 1) begin
+			$display("pcw wrong"); fail = 1; end
+		if (pcwc !==  0) begin
+			$display("pcwc wrong"); fail = 1; end
+		if (iord !== 0) begin
+			$display("iord wrong"); fail = 1; end
+		if (mr !== 1) begin
+			$display("mr wrong"); fail = 1; end
+		if(mw !== 0) begin
+			$display("mw wrong"); fail = 1; end
+		if (irw !== 1) begin
+			$display("irw wrong"); fail = 1; end
+		if (regw !== 0) begin
+			$display("regw wrong"); fail = 1; end
+		if (mtor !== 0) begin
+			$display("mtor wrong"); fail = 1; end
+		if (rdst !== 0) begin
+			$display("rdst wrong"); fail = 1; end
+		if (alusela !== 0) begin
+			$display("alusela wrong"); fail = 1; end
 		if (aluselb !== 2'b01)
 			begin
-				$display("aluselb wrong");
+				$display("aluselb wrong"); fail = 1;
 				$display("got %b", aluselb);
 			end
-		if (aluop !==2'b00)
-			$display("aluop wrong");
-		if (tw !== 0)
-			$display("tw wrong");
-		if (pcs !==2'b00)
-			$display("pcs wrong");
+		if (aluop !==2'b00) begin
+			$display("aluop wrong"); fail = 1; end
+		if (tw !== 0) begin
+			$display("tw wrong"); fail = 1; end
+		if (pcs !==2'b00) begin
+			$display("pcs wrong"); fail = 1; end
 			
 		op = OP_SW;
 		#100;
@@ -421,34 +444,34 @@ module ee357_alu_tb;
 		
 		$display("Checking to make sure we're in state 2");
 		
-		if (pcw !== 0)
-			$display("pcw wrong");
-		if (pcwc !==  0)
-			$display("pcwc wrong");
-		if (iord !== 1)
-			$display("iord wrong");
-		if (mr !== 0)
-			$display("mr wrong");
-		if(mw !== 0)
-			$display("mw wrong");
-		if (irw !== 0)
-			$display("irw wrong");
-		if (regw !== 0)
-			$display("regw wrong");
-		if (mtor !== 0)
-			$display("mtor wrong");
-		if (rdst !== 0)
-			$display("rdst wrong");
-		if (alusela !== 1)
-			$display("alusela wrong");
-		if (aluselb !== 2'b10)
-			$display("aluselb wrong");
-		if (aluop !==2'b00)
-			$display("aluop wrong");
-		if (tw !== 0)
-			$display("tw wrong");
-		if (pcs !==2'b00)
-			$display("pcs wrong");
+		if (pcw !== 0) begin
+			$display("pcw wrong"); fail = 1; end
+		if (pcwc !==  0) begin
+			$display("pcwc wrong"); fail = 1; end
+		if (iord !== 1) begin
+			$display("iord wrong"); fail = 1; end
+		if (mr !== 0) begin
+			$display("mr wrong"); fail = 1; end
+		if(mw !== 0) begin
+			$display("mw wrong"); fail = 1; end
+		if (irw !== 0) begin
+			$display("irw wrong"); fail = 1; end
+		if (regw !== 0) begin
+			$display("regw wrong"); fail = 1; end
+		if (mtor !== 0) begin
+			$display("mtor wrong"); fail = 1; end
+		if (rdst !== 0) begin
+			$display("rdst wrong"); fail = 1; end
+		if (alusela !== 1) begin
+			$display("alusela wrong"); fail = 1; end
+		if (aluselb !== 2'b10) begin
+			$display("aluselb wrong"); fail = 1; end
+		if (aluop !==2'b00) begin
+			$display("aluop wrong"); fail = 1; end
+		if (tw !== 0) begin
+			$display("tw wrong"); fail = 1; end
+		if (pcs !==2'b00) begin
+			$display("pcs wrong"); fail = 1; end
 			
 		clk = 1;
 		#100;
@@ -457,34 +480,34 @@ module ee357_alu_tb;
 		
 		$display("Checking state 5 (Memory Access)");
 		
-		if (pcw !== 0)
-			$display("pcw wrong");
-		if (pcwc !==  0)
-			$display("pcwc wrong");
-		if (iord !== 1)
-			$display("iord wrong");
-		if (mr !== 0)
-			$display("mr wrong");
-		if(mw !== 1)
-			$display("mw wrong");
-		if (irw !== 0)
-			$display("irw wrong");
-		if (regw !== 0)
-			$display("regw wrong");
-		if (mtor !== 0)
-			$display("mtor wrong");
-		if (rdst !== 0)
-			$display("rdst wrong");
-		if (alusela !== 1)
-			$display("alusela wrong");
-		if (aluselb !== 2'b10)
-			$display("aluselb wrong");
-		if (aluop !==2'b00)
-			$display("aluop wrong");
-		if (tw !== 0)
-			$display("tw wrong");
-		if (pcs !==2'b00)
-			$display("pcs wrong");
+		if (pcw !== 0) begin
+			$display("pcw wrong"); fail = 1; end
+		if (pcwc !==  0) begin
+			$display("pcwc wrong"); fail = 1; end
+		if (iord !== 1) begin
+			$display("iord wrong"); fail = 1; end
+		if (mr !== 0) begin
+			$display("mr wrong"); fail = 1; end
+		if(mw !== 1) begin
+			$display("mw wrong"); fail = 1; end
+		if (irw !== 0) begin
+			$display("irw wrong"); fail = 1; end
+		if (regw !== 0) begin
+			$display("regw wrong"); fail = 1; end
+		if (mtor !== 0) begin
+			$display("mtor wrong"); fail = 1; end
+		if (rdst !== 0) begin
+			$display("rdst wrong"); fail = 1; end
+		if (alusela !== 1) begin
+			$display("alusela wrong"); fail = 1; end
+		if (aluselb !== 2'b10) begin
+			$display("aluselb wrong"); fail = 1; end
+		if (aluop !==2'b00) begin
+			$display("aluop wrong"); fail = 1; end
+		if (tw !== 0) begin
+			$display("tw wrong"); fail = 1; end
+		if (pcs !==2'b00) begin
+			$display("pcs wrong"); fail = 1; end
 			
 		clk = 1;
 		#100;
@@ -493,37 +516,37 @@ module ee357_alu_tb;
 		
 		$display("Making sure we're back in state 0");
 		
-		if (pcw !== 1)
-			$display("pcw wrong");
-		if (pcwc !==  0)
-			$display("pcwc wrong");
-		if (iord !== 0)
-			$display("iord wrong");
-		if (mr !== 1)
-			$display("mr wrong");
-		if(mw !== 0)
-			$display("mw wrong");
-		if (irw !== 1)
-			$display("irw wrong");
-		if (regw !== 0)
-			$display("regw wrong");
-		if (mtor !== 0)
-			$display("mtor wrong");
-		if (rdst !== 0)
-			$display("rdst wrong");
-		if (alusela !== 0)
-			$display("alusela wrong");
+		if (pcw !== 1) begin
+			$display("pcw wrong"); fail = 1; end
+		if (pcwc !==  0) begin
+			$display("pcwc wrong"); fail = 1; end
+		if (iord !== 0) begin
+			$display("iord wrong"); fail = 1; end
+		if (mr !== 1) begin
+			$display("mr wrong"); fail = 1; end
+		if(mw !== 0) begin
+			$display("mw wrong"); fail = 1; end
+		if (irw !== 1) begin
+			$display("irw wrong"); fail = 1; end
+		if (regw !== 0) begin
+			$display("regw wrong"); fail = 1; end
+		if (mtor !== 0) begin
+			$display("mtor wrong"); fail = 1; end
+		if (rdst !== 0) begin
+			$display("rdst wrong"); fail = 1; end
+		if (alusela !== 0) begin
+			$display("alusela wrong"); fail = 1; end
 		if (aluselb !== 2'b01)
 			begin
-				$display("aluselb wrong");
+				$display("aluselb wrong"); fail = 1;
 				$display("got %b", aluselb);
 			end
-		if (aluop !==2'b00)
-			$display("aluop wrong");
-		if (tw !== 0)
-			$display("tw wrong");
-		if (pcs !==2'b00)
-			$display("pcs wrong");
+		if (aluop !==2'b00) begin
+			$display("aluop wrong"); fail = 1; end
+		if (tw !== 0) begin
+			$display("tw wrong"); fail = 1; end
+		if (pcs !==2'b00) begin
+			$display("pcs wrong"); fail = 1; end
 		
 		op = OP_RTYPE;
 		#100;
@@ -541,34 +564,34 @@ module ee357_alu_tb;
 		
 		$display("Checking state 6 (Execution)");
 		
-		if (pcw !== 0)
-			$display("pcw wrong");
-		if (pcwc !==  0)
-			$display("pcwc wrong");
-		if (iord !== 0)
-			$display("iord wrong");
-		if (mr !== 0)
-			$display("mr wrong");
-		if(mw !== 0)
-			$display("mw wrong");
-		if (irw !== 0)
-			$display("irw wrong");
-		if (regw !== 0)
-			$display("regw wrong");
-		if (mtor !== 0)
-			$display("mtor wrong");
-		if (rdst !== 0)
-			$display("rdst wrong");
-		if (alusela !== 1)
-			$display("alusela wrong");
-		if (aluselb !== 2'b00)
-			$display("aluselb wrong");
-		if (aluop !==2'b10)
-			$display("aluop wrong");
-		if (tw !== 0)
-			$display("tw wrong");
-		if (pcs !==2'b00)
-			$display("pcs wrong");
+		if (pcw !== 0) begin
+			$display("pcw wrong"); fail = 1; end
+		if (pcwc !==  0) begin
+			$display("pcwc wrong"); fail = 1; end
+		if (iord !== 0) begin
+			$display("iord wrong"); fail = 1; end
+		if (mr !== 0) begin
+			$display("mr wrong"); fail = 1; end
+		if(mw !== 0) begin
+			$display("mw wrong"); fail = 1; end
+		if (irw !== 0) begin
+			$display("irw wrong"); fail = 1; end
+		if (regw !== 0) begin
+			$display("regw wrong"); fail = 1; end
+		if (mtor !== 0) begin
+			$display("mtor wrong"); fail = 1; end
+		if (rdst !== 0) begin
+			$display("rdst wrong"); fail = 1; end
+		if (alusela !== 1) begin
+			$display("alusela wrong"); fail = 1; end
+		if (aluselb !== 2'b00) begin
+			$display("aluselb wrong"); fail = 1; end
+		if (aluop !==2'b10) begin
+			$display("aluop wrong"); fail = 1; end
+		if (tw !== 0) begin
+			$display("tw wrong"); fail = 1; end
+		if (pcs !==2'b00) begin
+			$display("pcs wrong"); fail = 1; end
 			
 		clk = 1;
 		#100;
@@ -577,34 +600,34 @@ module ee357_alu_tb;
 		
 		$display("Checking state 7 (Write back)");
 		
-		if (pcw !== 0)
-			$display("pcw wrong");
-		if (pcwc !==  0)
-			$display("pcwc wrong");
-		if (iord !== 0)
-			$display("iord wrong");
-		if (mr !== 0)
-			$display("mr wrong");
-		if(mw !== 0)
-			$display("mw wrong");
-		if (irw !== 0)
-			$display("irw wrong");
-		if (regw !== 1)
-			$display("regw wrong");
-		if (mtor !== 0)
-			$display("mtor wrong");
-		if (rdst !== 1)
-			$display("rdst wrong");
-		if (alusela !== 1)
-			$display("alusela wrong");
-		if (aluselb !== 2'b00)
-			$display("aluselb wrong");
-		if (aluop !==2'b10)
-			$display("aluop wrong");
-		if (tw !== 0)
-			$display("tw wrong");
-		if (pcs !==2'b00)
-			$display("pcs wrong");
+		if (pcw !== 0) begin
+			$display("pcw wrong"); fail = 1; end
+		if (pcwc !==  0) begin
+			$display("pcwc wrong"); fail = 1; end
+		if (iord !== 0) begin
+			$display("iord wrong"); fail = 1; end
+		if (mr !== 0) begin
+			$display("mr wrong"); fail = 1; end
+		if(mw !== 0) begin
+			$display("mw wrong"); fail = 1; end
+		if (irw !== 0) begin
+			$display("irw wrong"); fail = 1; end
+		if (regw !== 1) begin
+			$display("regw wrong"); fail = 1; end
+		if (mtor !== 0) begin
+			$display("mtor wrong"); fail = 1; end
+		if (rdst !== 1) begin
+			$display("rdst wrong"); fail = 1; end
+		if (alusela !== 1) begin
+			$display("alusela wrong"); fail = 1; end
+		if (aluselb !== 2'b00) begin
+			$display("aluselb wrong"); fail = 1; end
+		if (aluop !==2'b10) begin
+			$display("aluop wrong"); fail = 1; end
+		if (tw !== 0) begin
+			$display("tw wrong"); fail = 1; end
+		if (pcs !==2'b00) begin
+			$display("pcs wrong"); fail = 1; end
 		
 		clk = 1;
 		#100;
@@ -613,37 +636,37 @@ module ee357_alu_tb;
 		
 		$display("Making sure we're back in state 0");
 		
-		if (pcw !== 1)
-			$display("pcw wrong");
-		if (pcwc !==  0)
-			$display("pcwc wrong");
-		if (iord !== 0)
-			$display("iord wrong");
-		if (mr !== 1)
-			$display("mr wrong");
-		if(mw !== 0)
-			$display("mw wrong");
-		if (irw !== 1)
-			$display("irw wrong");
-		if (regw !== 0)
-			$display("regw wrong");
-		if (mtor !== 0)
-			$display("mtor wrong");
-		if (rdst !== 0)
-			$display("rdst wrong");
-		if (alusela !== 0)
-			$display("alusela wrong");
+		if (pcw !== 1) begin
+			$display("pcw wrong"); fail = 1; end
+		if (pcwc !==  0) begin
+			$display("pcwc wrong"); fail = 1; end
+		if (iord !== 0) begin
+			$display("iord wrong"); fail = 1; end
+		if (mr !== 1) begin
+			$display("mr wrong"); fail = 1; end
+		if(mw !== 0) begin
+			$display("mw wrong"); fail = 1; end
+		if (irw !== 1) begin
+			$display("irw wrong"); fail = 1; end
+		if (regw !== 0) begin
+			$display("regw wrong"); fail = 1; end
+		if (mtor !== 0) begin
+			$display("mtor wrong"); fail = 1; end
+		if (rdst !== 0) begin
+			$display("rdst wrong"); fail = 1; end
+		if (alusela !== 0) begin
+			$display("alusela wrong"); fail = 1; end
 		if (aluselb !== 2'b01)
 			begin
-				$display("aluselb wrong");
+				$display("aluselb wrong"); fail = 1;
 				$display("got %b", aluselb);
 			end
-		if (aluop !==2'b00)
-			$display("aluop wrong");
-		if (tw !== 0)
-			$display("tw wrong");
-		if (pcs !==2'b00)
-			$display("pcs wrong");
+		if (aluop !==2'b00) begin
+			$display("aluop wrong"); fail = 1; end
+		if (tw !== 0) begin
+			$display("tw wrong"); fail = 1; end
+		if (pcs !==2'b00) begin
+			$display("pcs wrong"); fail = 1; end
 			
 		op = OP_BEQ;
 		#100;
@@ -661,34 +684,34 @@ module ee357_alu_tb;
 		
 		$display("Checking state 8 (Branch Completion)");
 		
-		if (pcw !== 0)
-			$display("pcw wrong");
-		if (pcwc !==  1)
-			$display("pcwc wrong");
-		if (iord !== 0)
-			$display("iord wrong");
-		if (mr !== 0)
-			$display("mr wrong");
-		if(mw !== 0)
-			$display("mw wrong");
-		if (irw !== 0)
-			$display("irw wrong");
-		if (regw !== 0)
-			$display("regw wrong");
-		if (mtor !== 0)
-			$display("mtor wrong");
-		if (rdst !== 0)
-			$display("rdst wrong");
-		if (alusela !== 1)
-			$display("alusela wrong");
-		if (aluselb !== 2'b00)
-			$display("aluselb wrong");
-		if (aluop !==2'b01)
-			$display("aluop wrong");
-		if (tw !== 0)
-			$display("tw wrong");
-		if (pcs !==2'b01)
-			$display("pcs wrong");
+		if (pcw !== 0) begin
+			$display("pcw wrong"); fail = 1; end
+		if (pcwc !==  1) begin
+			$display("pcwc wrong"); fail = 1; end
+		if (iord !== 0) begin
+			$display("iord wrong"); fail = 1; end
+		if (mr !== 0) begin
+			$display("mr wrong"); fail = 1; end
+		if(mw !== 0) begin
+			$display("mw wrong"); fail = 1; end
+		if (irw !== 0) begin
+			$display("irw wrong"); fail = 1; end
+		if (regw !== 0) begin
+			$display("regw wrong"); fail = 1; end
+		if (mtor !== 0) begin
+			$display("mtor wrong"); fail = 1; end
+		if (rdst !== 0) begin
+			$display("rdst wrong"); fail = 1; end
+		if (alusela !== 1) begin
+			$display("alusela wrong"); fail = 1; end
+		if (aluselb !== 2'b00) begin
+			$display("aluselb wrong"); fail = 1; end
+		if (aluop !==2'b01) begin
+			$display("aluop wrong"); fail = 1; end
+		if (tw !== 0) begin
+			$display("tw wrong"); fail = 1; end
+		if (pcs !==2'b01) begin
+			$display("pcs wrong"); fail = 1; end
 			
 		clk = 1;
 		#100;
@@ -697,37 +720,37 @@ module ee357_alu_tb;
 		
 		$display("Making sure we're back in state 0");
 		
-		if (pcw !== 1)
-			$display("pcw wrong");
-		if (pcwc !==  0)
-			$display("pcwc wrong");
-		if (iord !== 0)
-			$display("iord wrong");
-		if (mr !== 1)
-			$display("mr wrong");
-		if(mw !== 0)
-			$display("mw wrong");
-		if (irw !== 1)
-			$display("irw wrong");
-		if (regw !== 0)
-			$display("regw wrong");
-		if (mtor !== 0)
-			$display("mtor wrong");
-		if (rdst !== 0)
-			$display("rdst wrong");
-		if (alusela !== 0)
-			$display("alusela wrong");
+		if (pcw !== 1) begin
+			$display("pcw wrong"); fail = 1; end
+		if (pcwc !==  0) begin
+			$display("pcwc wrong"); fail = 1; end
+		if (iord !== 0) begin
+			$display("iord wrong"); fail = 1; end
+		if (mr !== 1) begin
+			$display("mr wrong"); fail = 1; end
+		if(mw !== 0) begin
+			$display("mw wrong"); fail = 1; end
+		if (irw !== 1) begin
+			$display("irw wrong"); fail = 1; end
+		if (regw !== 0) begin
+			$display("regw wrong"); fail = 1; end
+		if (mtor !== 0) begin
+			$display("mtor wrong"); fail = 1; end
+		if (rdst !== 0) begin
+			$display("rdst wrong"); fail = 1; end
+		if (alusela !== 0) begin
+			$display("alusela wrong"); fail = 1; end
 		if (aluselb !== 2'b01)
 			begin
-				$display("aluselb wrong");
+				$display("aluselb wrong"); fail = 1;
 				$display("got %b", aluselb);
 			end
-		if (aluop !==2'b00)
-			$display("aluop wrong");
-		if (tw !== 0)
-			$display("tw wrong");
-		if (pcs !==2'b00)
-			$display("pcs wrong");
+		if (aluop !==2'b00) begin
+			$display("aluop wrong"); fail = 1; end
+		if (tw !== 0) begin
+			$display("tw wrong"); fail = 1; end
+		if (pcs !==2'b00) begin
+			$display("pcs wrong"); fail = 1; end
 			
 		op = OP_JMP;
 		#100;
@@ -745,34 +768,34 @@ module ee357_alu_tb;
 		
 		$display("Checking state 9 (Jump Completion)");
 		
-		if (pcw !== 1)
-			$display("pcw wrong");
-		if (pcwc !==  0)
-			$display("pcwc wrong");
-		if (iord !== 0)
-			$display("iord wrong");
-		if (mr !== 0)
-			$display("mr wrong");
-		if(mw !== 0)
-			$display("mw wrong");
-		if (irw !== 0)
-			$display("irw wrong");
-		if (regw !== 0)
-			$display("regw wrong");
-		if (mtor !== 0)
-			$display("mtor wrong");
-		if (rdst !== 0)
-			$display("rdst wrong");
-		if (alusela !== 0)
-			$display("alusela wrong");
-		if (aluselb !== 2'b00)
-			$display("aluselb wrong");
-		if (aluop !==2'b00)
-			$display("aluop wrong");
-		if (tw !== 0)
-			$display("tw wrong");
-		if (pcs !== 2'b10)
-			$display("pcs wrong");
+		if (pcw !== 1) begin
+			$display("pcw wrong"); fail = 1; end
+		if (pcwc !==  0) begin
+			$display("pcwc wrong"); fail = 1; end
+		if (iord !== 0) begin
+			$display("iord wrong"); fail = 1; end
+		if (mr !== 0) begin
+			$display("mr wrong"); fail = 1; end
+		if(mw !== 0) begin
+			$display("mw wrong"); fail = 1; end
+		if (irw !== 0) begin
+			$display("irw wrong"); fail = 1; end
+		if (regw !== 0) begin
+			$display("regw wrong"); fail = 1; end
+		if (mtor !== 0) begin
+			$display("mtor wrong"); fail = 1; end
+		if (rdst !== 0) begin
+			$display("rdst wrong"); fail = 1; end
+		if (alusela !== 0) begin
+			$display("alusela wrong"); fail = 1; end
+		if (aluselb !== 2'b00) begin
+			$display("aluselb wrong"); fail = 1; end
+		if (aluop !==2'b00) begin
+			$display("aluop wrong"); fail = 1; end
+		if (tw !== 0) begin
+			$display("tw wrong"); fail = 1; end
+		if (pcs !== 2'b10) begin
+			$display("pcs wrong"); fail = 1; end
 			
 		clk = 1;
 		#100;
@@ -781,37 +804,37 @@ module ee357_alu_tb;
 		
 		$display("Making sure we're back in state 0");
 		
-		if (pcw !== 1)
-			$display("pcw wrong");
-		if (pcwc !==  0)
-			$display("pcwc wrong");
-		if (iord !== 0)
-			$display("iord wrong");
-		if (mr !== 1)
-			$display("mr wrong");
-		if(mw !== 0)
-			$display("mw wrong");
-		if (irw !== 1)
-			$display("irw wrong");
-		if (regw !== 0)
-			$display("regw wrong");
-		if (mtor !== 0)
-			$display("mtor wrong");
-		if (rdst !== 0)
-			$display("rdst wrong");
-		if (alusela !== 0)
-			$display("alusela wrong");
+		if (pcw !== 1) begin
+			$display("pcw wrong"); fail = 1; end
+		if (pcwc !==  0) begin
+			$display("pcwc wrong"); fail = 1; end
+		if (iord !== 0) begin
+			$display("iord wrong"); fail = 1; end
+		if (mr !== 1) begin
+			$display("mr wrong"); fail = 1; end
+		if(mw !== 0) begin
+			$display("mw wrong"); fail = 1; end
+		if (irw !== 1) begin
+			$display("irw wrong"); fail = 1; end
+		if (regw !== 0) begin
+			$display("regw wrong"); fail = 1; end
+		if (mtor !== 0) begin
+			$display("mtor wrong"); fail = 1; end
+		if (rdst !== 0) begin
+			$display("rdst wrong"); fail = 1; end
+		if (alusela !== 0) begin
+			$display("alusela wrong"); fail = 1; end
 		if (aluselb !== 2'b01)
 			begin
-				$display("aluselb wrong");
+				$display("aluselb wrong"); fail = 1;
 				$display("got %b", aluselb);
 			end
-		if (aluop !==2'b00)
-			$display("aluop wrong");
-		if (tw !== 0)
-			$display("tw wrong");
-		if (pcs !== 2'b00)
-			$display("pcs wrong");
+		if (aluop !==2'b00) begin
+			$display("aluop wrong"); fail = 1; end
+		if (tw !== 0) begin
+			$display("tw wrong"); fail = 1; end
+		if (pcs !== 2'b00) begin
+			$display("pcs wrong"); fail = 1; end
 			
 		op = OP_ADDI;
 		#100;
@@ -820,9 +843,17 @@ module ee357_alu_tb;
 		clk = 0;
 		#100;
 		
-		$display("Done");
-		$stop();
-
+		$display("\n");
+		if (fail)
+		begin
+			$display("****MCPU_CU TEST FAILED****");
+			$stop();
+		end
+		else
+			begin
+				$display("MCPU_CU Test Passed");
+				$finish();
+			end
 	end
 endmodule
 

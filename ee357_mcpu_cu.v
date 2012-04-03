@@ -38,6 +38,7 @@ module ee357_mcpu_cu(
     output reg			tw,
     output reg	[1:0] pcs
     );
+	
 
    // Use these for IFL (opcode decoding) if desired
 	localparam OP_LW = 6'b100011;

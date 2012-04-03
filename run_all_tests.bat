@@ -1,0 +1,2 @@
+run_alu_tb.bat
+run_mcpu_cu_tb.bat
