@@ -103,6 +103,7 @@ module ee357_alu_tb;
 		.mtor(mtor),
 		.rdst(rdst),
 		.alusela(alusela),
+		.aluselb(aluselb),
 		.aluop(aluop),
 		.tw(tw),
 		.pcs(pcs)
@@ -113,11 +114,12 @@ module ee357_alu_tb;
 		op = 0;
 		func = 0;
 		rst = 1;
-		clk = 0;
+		clk = 1;
 
 		// Wait 100 ns for global reset to finish
 		#100;
 		
+		clk = 0;
 		rst = 0;
 		
 		// Wait 100 ns for rst to go down
@@ -194,7 +196,7 @@ module ee357_alu_tb;
 			$display("pcwc wrong");
 		if (iord !== 0)
 			$display("iord wrong");
-		if (mr !== 0)
+		if (mr !== 1)
 			$display("mr wrong");
 		if(mw !== 0)
 			$display("mw wrong");
@@ -209,7 +211,10 @@ module ee357_alu_tb;
 		if (alusela !== 0)
 			$display("alusela wrong");
 		if (aluselb !== 2'b01)
-			$display("aluselb wrong");
+			begin
+				$display("aluselb wrong");
+				$display("got %b", aluselb);
+			end
 		if (aluop != 2'b00)
 			$display("aluop wrong");
 		if (tw !== 0)
@@ -253,8 +258,6 @@ module ee357_alu_tb;
 			$display("tw wrong");
 		if (pcs != 2'b00)
 			$display("pcs wrong");
-	
-		$display("Done");
 		
 		#100;
 		clk = 1;
