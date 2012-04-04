@@ -51,18 +51,18 @@ module ee357_mcpu_cu(
 	localparam OP_JAL = 6'b000011;
 
 	// State definitions if desired
-	localparam STATE0 = 4'd0;
-	localparam STATE1 = 4'd1;
-	localparam STATE2 = 4'd2;
-	localparam STATE3 = 4'd3;
-	localparam STATE4 = 4'd4;
-	localparam STATE5 = 4'd5;
-	localparam STATE6 = 4'd6;
-	localparam STATE7 = 4'd7;
-	localparam STATE8 = 4'd8;
-	localparam STATE9 = 4'd9;
-	localparam STATE10 = 4'd10;
-	localparam STATE11 = 4'd11;
+	localparam STATE0 = 4'd0; //Instruc fetch
+	localparam STATE1 = 4'd1; //Instruc decode + reg fetch
+	localparam STATE2 = 4'd2; //Mem addr computation
+	localparam STATE3 = 4'd3; //Memory access
+	localparam STATE4 = 4'd4; //Write-back
+	localparam STATE5 = 4'd5; //Memory access
+	localparam STATE6 = 4'd6; //Execution
+	localparam STATE7 = 4'd7; //Write back
+	localparam STATE8 = 4'd8; //Branch Completion
+	localparam STATE9 = 4'd9; //Jump Completion
+	localparam STATE10 = 4'd10; //ADDI execution
+	localparam STATE11 = 4'd11; //ADDI write-back
 	localparam STATE12 = 4'd12;
 	localparam STATE13 = 4'd13;
 

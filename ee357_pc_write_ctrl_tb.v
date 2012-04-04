@@ -15,7 +15,7 @@ module ee357_pc_write_ctrl_tb;
 	.pcw(pcw),
 	.pcwcond(pcwcond),
 	.cond(cond),
-	.inv_cond(inv_cond),
+	.inv_cond(inv_cond), //Should be hooked up to the 26th bit of the instruction
 	.w(w)
 	);
 	
