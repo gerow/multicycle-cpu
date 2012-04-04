@@ -41,7 +41,7 @@ module ee357_alu_ctrl_tb;
 		
 		#100;
 		
-		if (func !== FUNC_ADD)
+		if (alu_ctrl !== FUNC_ADD)
 		begin
 			fail = 1;
 			$display("Failed to force an add");
@@ -53,7 +53,7 @@ module ee357_alu_ctrl_tb;
 		aluOP = FORCE_SUBTRACT;
 		#100;
 		
-		if (func !== FUNC_SUB)
+		if (alu_ctrl !== FUNC_SUB)
 		begin
 			fail = 1;
 			$display("Failed to force a subtraction");
@@ -65,7 +65,7 @@ module ee357_alu_ctrl_tb;
 		aluOP = FORCE_PASS;
 		#100;
 		
-		if (func !== FUNC_XOR)
+		if (alu_ctrl !== FUNC_XOR)
 		begin
 			fail = 1;
 			$display("Pass through failed");

@@ -23,10 +23,10 @@ module alu_ctrl(
 	always@*
 	begin
 		if(aluOP == 0)
-			alu_ctrl <= FUNC_ADD;
+			alu_ctrl = FUNC_ADD;
 		else if(aluOP == 1)
-			alu_ctrl <= FUNC_SUB;
+			alu_ctrl = FUNC_SUB;
 		else if(aluOP == 2)
-			alu_ctrl <= func;
+			alu_ctrl = func;
 	end
 endmodule
