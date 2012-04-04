@@ -9,6 +9,7 @@ module ee357_32reg(
 	wire	[31:0] in;
 	wire	enable;
 	wire	sys_clk;
+	wire	reset;
 	reg		[31:0] out;
 	
 	always@(posedge sys_clk)
