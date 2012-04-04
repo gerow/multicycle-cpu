@@ -4,8 +4,8 @@ module ee357_4x32_mux(
 	input   [31:0] zero,
 	input   [31:0] one,
 	input	[31:0] two,
-	input	[31:0] three;
-	input	[1:0] sel,
+	input	[31:0] three,
+	input	[1:0] sel
 	);
 	
 	reg [31:0] out;
