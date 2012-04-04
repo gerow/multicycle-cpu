@@ -1,0 +1,1 @@
+iverilog -o cpu ee357_32reg.v ee357_4x32_mux.v ee357_left_shift_2.v ee357_mcpu_cu.v ee357_mcpu.v ee357_pc_write_ctrl.v ee357_sign_extend_16_to_32.v ee357_alu.v ee357_mem.v ee357_regfile_2r1w.v ee357_alu_ctrl.v ee357_2x32_mux.v
