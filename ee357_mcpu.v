@@ -63,9 +63,9 @@ module ee357_mcpu(
 	localparam FUNC_JR  = 6'b001000;
 
 	// ALU signals
-	reg [31:0]		ina;
-	reg [31:0]		inb;
-	reg [5:0]		alu_func;
+	wire [31:0]		ina;
+	wire [31:0]		inb;
+	wire [5:0]		alu_func;
 	wire [31:0]		alu_res;
 	wire 				sov;
 	wire				zero;
@@ -91,36 +91,59 @@ module ee357_mcpu(
 	wire [5:0]		func;
 	wire [15:0]		imm;
 	wire [25:0]		jmpaddr;
+	
+	wire [31:0]		shifted_jmpaddr;
 
-	reg  [31:0]		pc;
-	reg				pcwen;
-	reg  [31:0]		ir;
+	wire  [31:0]	pc;
+	wire			pcwen;
+	wire  [31:0]		ir;
 	wire [31:0] 	imm_sext;
 	wire [31:0]		imm_sext_shl2;
 	wire [31:0]		jump_target_pc;
-	reg [31:0]		branch_target_pc;
+	wire [31:0]		branch_target_pc;
+	
+	//Misc signals
+	wire [31:0] sign_extended_imm;
+	wire [31:0] left_shifted_sext_imm;
+	wire [31:0] candidate_pc;
 	
 	
 	
 	// PC process
-	always @(posedge clk)
-	begin
-		if(rst == 1)
-			pc <= 32'b0;
-		else if(pcwen == 1)
-			pc <= 32'b0;
-	end
+	//always @(posedge clk)
+	//begin
+	//	if(rst == 1)
+	//		pc <= 32'b0;
+	//	else if(pcwen == 1)
+	//		pc <= 32'b0;
+	//end
+	
+	ee357_32reg pc_register (
+	.in(candidate_pc),
+	.out(pc),
+	.enable(pcwen),
+	.sys_clk(clk),
+	.reset(rst)
+	);
 
 
 
 	// IR Process
-	always @(posedge clk)
-	begin
-		if(rst == 1)
-			ir <= 32'b0;
-		else if(irwrite == 1)
-			ir <= mem_rdata;
-	end
+	//always @(posedge clk)
+	//begin
+	//	if(rst == 1)
+	//		ir <= 32'b0;
+	//	else if(irwrite == 1)
+	//		ir <= mem_rdata;
+	//end
+	
+	ee357_32reg instruction_register (
+	.in(mem_rdata),
+	.out(ir),
+	.enable(irwrite),
+	.sys_clk(clk),
+	.reset(rst)
+	);
 
 	// IR Field Breakout
 	assign opcode = ir[31:26];
@@ -135,6 +158,41 @@ module ee357_mcpu(
 	assign reg_ra = rs;
 	assign reg_rb = rt;
 	
+	assign bne_bit = ir[26];
+	
+	//Mux to select the memory address
+	ee357_2x32_mux memory_address_mux (
+	.zero(pc),
+	.one(alu_res),
+	.sel(iord),
+	.out(mem_addr)
+	);
+	
+	//PC Write contrller
+	ee357_pc_write_ctrl pc_write_controller (
+	.w(pcwen),
+	.pcw(pcwen),
+	.pcwcond(pcwc),
+	.cond(zero),
+	.inv_cond(bne_bit)
+	);
+	
+	ee357_sign_extend_16_to_32 imm_sign_extender (
+	.in(imm),
+	.out(sign_extended_imm)
+	);
+	
+	ee357_left_shift_2 imm_left_shift_2 (
+	.in(sign_extended_imm),
+	.out(left_shifted_sext_imm)
+	);
+	
+	alu_ctrl alu_controller (
+	.aluOP(aluop),
+	.func(func),
+	.alu_ctrl(alu_func)
+	);
+	
 	// Regfile instance
 	ee357_regfile_2r1w regfile (
 		.ra(reg_ra),
@@ -146,6 +204,36 @@ module ee357_mcpu(
 		.rst(rst),
 		.radata(reg_radata),
 		.rbdata(reg_rbdata)
+	);
+	
+	ee357_2x32_mux alu_a_selection_mux (
+	.zero(pc),
+	.one(reg_radata),
+	.sel(alusela),
+	.out(ina)
+	);
+	
+	ee357_4x32_mux alu_b_selection_mux (
+	.zero(reg_rbdata),
+	.one(4),
+	.two(sign_extended_imm),
+	.three(left_shifted_sext_imm),
+	.sel(aluselb),
+	.out(inb)
+	);
+	
+	ee357_left_shift_2 jmp_left_shift (
+	.in({{6{1'b0}}, jmpaddr}),
+	.out(shifted_jmpaddr)
+	);
+	
+	ee357_4x32_mux pc_select_mux (
+	.zero(alu_res),
+	.one(branch_target_pc),
+	.two(shifted_jmpaddr),
+	.three(32'b0),
+	.sel(pcsource),
+	.out(candidate_pc)
 	);
 
 	
@@ -163,14 +251,23 @@ module ee357_mcpu(
 
 	
 	// Branch Target Register
-	always @(posedge clk)
-	begin
-		if(rst == 1)
-			branch_target_pc <= 32'b0;
-		else if (targetwrite == 1)
-			// Change/add your code here
-			branch_target_pc <= alu_res;
-	end
+	//always @(posedge clk)
+	//begin
+	//	if(rst == 1)
+	//		branch_target_pc <= 32'b0;
+	//	else if (targetwrite == 1)
+	//		// Change/add your code here
+	//		branch_target_pc <= alu_res;
+	//end
+	
+	//Branch Target Register instance
+	ee357_32reg branch_target_register (
+	.in(alu_res),
+	.out(branch_target_pc),
+	.enable(targetwrite),
+	.sys_clk(clk),
+	.reset(rst)
+	);
 	
 	
 	// Control Unit (state machine)
