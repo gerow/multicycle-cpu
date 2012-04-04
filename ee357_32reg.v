@@ -2,7 +2,8 @@ module ee357_32reg(
 	input [31:0] in,
 	output[31:0] out,
 	input enable,
-	input sys_clk
+	input sys_clk,
+	input reset
 	);
 	
 	wire	[31:0] in;
@@ -12,7 +13,9 @@ module ee357_32reg(
 	
 	always@(posedge sys_clk)
 	begin
-		if(enable)
+		if (reset)
+			out <= 0;
+		else if(enable)
 			out <= in;
 	end
 
