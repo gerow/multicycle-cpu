@@ -108,7 +108,6 @@ module ee357_mcpu(
 		if(rst == 1)
 			pc <= 32'b0;
 		else if(pcwen == 1)
-			// Change/add your code here
 			pc <= 32'b0;
 	end
 
@@ -120,8 +119,7 @@ module ee357_mcpu(
 		if(rst == 1)
 			ir <= 32'b0;
 		else if(irwrite == 1)
-			// Change/add your code here
-			ir <= 32'b0;
+			ir <= mem_rdata;
 	end
 
 	// IR Field Breakout
@@ -171,7 +169,7 @@ module ee357_mcpu(
 			branch_target_pc <= 32'b0;
 		else if (targetwrite == 1)
 			// Change/add your code here
-			branch_target_pc <= 32'b0;
+			branch_target_pc <= alu_res;
 	end
 	
 	
