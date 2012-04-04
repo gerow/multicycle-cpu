@@ -1,8 +1,13 @@
 module alu_ctrl(
-	input [2:0]		aluOP,
+	input [1:0]		aluOP,
 	input [5:0] 	func,
 	output [5:0]	alu_ctrl
 	);
+	
+	wire [1:0] aluOP;
+	wire [5:0] func;
+	reg [5:0] alu_ctrl;
+	
 	localparam FUNC_ADD = 6'b100000;
 	localparam FUNC_SUB = 6'b100010;
 	localparam FUNC_AND = 6'b100100;
@@ -15,4 +20,13 @@ module alu_ctrl(
 	localparam FUNC_SRA = 6'b000011;
 	localparam FUNC_JR  = 6'b001000;
 
+	always@*
+	begin
+		if(aluOP == 0)
+			alu_ctrl <= FUNC_ADD;
+		else if(aluOP == 1)
+			alu_ctrl <= FUNC_SUB;
+		else if(aluOP == 2)
+			alu_ctrl <= func;
+	end
 endmodule
