@@ -1,0 +1,3 @@
+iverilog -o ee357_sign_extend_16_to_32 ee357_sign_extend_16_to_32_tb.v ee357_sign_extend_16_to_32.v
+vvp -n ee357_sign_extend_16_to_32
+rm ee357_sign_extend_16_to_32
